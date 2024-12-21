@@ -22,26 +22,51 @@
         }) */}
 
         {/* Select all button elements */}
-        document.addEventListener('DOMContentLoaded', function() {
+        {/* document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('button').forEach(function(button){
                 button.onclick = function() {
                     // Change font color to button's data-color
                     document.querySelector('#hello').style.color = button.dataset.color;
                 }   
             })
+        }); */}
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('select').onchange = function() {
+                // Change font color to select's value
+                document.querySelector('#hello').style.color = this.value;
+            }
+
         });
 
     </script>
 </head>
 <body class="container mt-5">
 
-    <h1 id="hello">Hello!</h1>
+    <h1 id="hello">Hello!!!!!</h1>
+    <!-- Buttons with ID -->
     <!-- <button id="red" class="btn btn-primary">Red</button>
     <button id="blue" class="btn btn-primary">Blue</button>
     <button id="green" class="btn btn-primary">Green</button> -->
-    <button data-color="red" class="btn btn-primary">Red</button>
+
+    <!-- Buttons with data "data-color" -->
+    <!-- <button data-color="red" class="btn btn-primary">Red</button>
     <button data-color="blue" class="btn btn-primary">Blue</button>
-    <button data-color="green" class="btn btn-primary">Green</button>
+    <button data-color="green" class="btn btn-primary">Green</button> -->
+
+
+    <div class="row">
+        <div class="col-2">
+            <select class="form-select" >
+                <option value="black">Black</option>
+                <option value="blue">Blue</option>
+                <option value="green">Green</option>
+            </select>
+        </div>
+    </div>
+	
+
+
+
 
 
     <!-- Bootstrap -->

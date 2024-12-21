@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Exchange</title>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            document.querySelector('form').onsubmit = function() {
+                fetch('https://api.exchangerate-api.com/v4/latest/USD')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    const currency = document.querySelector('#currency').value.toUpperCase();
+                    const rate = data.rates[currency] // Using data.rates.currency since currency is a variable and not a JSON key.
+                    if (rate !== undefined) {
+                        document.querySelector('#result').innerHTML = `1 USD is equal to ${rate.toFixed(2)} ${currency}.`;
+                    } else {
+                        document.querySelector('#result').innerHTML = "Invalid currency."
+                    }
+                })
+                // Catch case
+                .catch(error => {
+                    console.log('Error: ', error);
+                })
+
+                
+                return false;
+            }
+
+
+            // fetch('https://api.exchangerate-api.com/v4/latest/USD')
+            //     .then(response => response.json())
+            //     // The line above is the same as the line below
+            //     // .then(response => {
+            //     //     return response.json()
+            //     // })
+            //     // .then(data => {
+            //     //     console.log(data)
+            //     // })
+            //     .then(data => {
+            //         const rate = data.rates.EUR;
+            //         document.querySelector('body').innerHTML = `1 USD is equal to ${rate.toFixed(2)} EUR.`;
+            //     })
+        })
+    </script>
+</head>
+<body>
+
+    <form action="">
+        <input type="text" id="currency" placeholder="Currency">
+        <button>Submit</button>
+    </form>
+    <div id="result">
+
+    </div>
+    
+</body>
+</html>
